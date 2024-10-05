@@ -1,5 +1,22 @@
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import EarthCartoon from "../../public/earthCarton/EarthCartoon"
+
+
 function Home() {
-	return <h1 className="text-3xl font-bold underline">Exoplanet</h1>;
+	
+	return (
+		<>
+		<Canvas>
+			<ambientLight/>
+			<OrbitControls/>
+			<Suspense fallback={null}>
+				<EarthCartoon/>
+			</Suspense>
+		</Canvas>
+		</>
+	);
 }
 
 export default Home;
