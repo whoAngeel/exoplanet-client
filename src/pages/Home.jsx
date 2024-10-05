@@ -1,5 +1,15 @@
+import { OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import EarthCartoon from "../../public/earthCarton/EarthCartoon";
+import World from "../components/World";
+
 function Home() {
-	return <h1 className="text-3xl font-bold underline flex-1 h-full">ExoPlanet</h1>;
+	return (
+		<>
+			<World />
+		</>
+	);
 }
 
 export default Home;
