@@ -10,7 +10,6 @@ import {
 	PURGE,
 	REGISTER,
 } from "redux-persist";
-import FundReducer from "./funding/fund.slice";
 import AuthReducer from "./auth/auth.slice";
 const authPersistConfig = {
 	key: "root",
@@ -20,7 +19,6 @@ const persistedAuthReducer = persistReducer(authPersistConfig, AuthReducer);
 
 const rootReducer = combineReducers({
 	auth: persistedAuthReducer,
-	funding: FundReducer,
 	// otros reducers
 });
 export const store = configureStore({

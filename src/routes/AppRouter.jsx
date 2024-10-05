@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider, Route, Link } from "react-router-d
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Logout from "../pages/Logout";
 
 const router = createBrowserRouter([
 	{
