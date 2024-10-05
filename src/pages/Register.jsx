@@ -34,19 +34,19 @@ function Register() {
 	}, [token]);
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-base-50">
+		<div className="flex items-center justify-center min-h-screen text-base-content">
 			{contextHolder}
 			<Form
 				onFinish={onFinish}
 				form={form}
 				layout="vertical"
-				className="w-10-12 sm:w-10/12 lg:w-4/12 -mt-32 flex flex-col gap-2 p-4 bg-base-400 rounded-md"
+				className="w-10-12 sm:w-10/12 lg:w-4/12 -mt-32 flex flex-col gap-2 p-4 text-base-content bg-base-300 rounded-md"
 			>
 				<h2 className="text-xl font-semibold text-center my-2">
 					Crear una cuenta nueva
 				</h2>
 				<Form.Item
-					label="Nombre"
+					label={<span className="text-base-content">Nombre</span>}
 					name="fullName"
 					required
 					rules={[
@@ -63,7 +63,7 @@ function Register() {
 					<Input placeholder="Juan Perez" />
 				</Form.Item>
 				<Form.Item
-					label="Correo"
+					label={<span className="text-base-content">Correo</span>}
 					name="email"
 					required
 					rules={[
@@ -81,7 +81,7 @@ function Register() {
 					<Input placeholder="usuario@example.com" />
 				</Form.Item>
 				<Form.Item
-					label="Contraseña"
+					label={<span className="text-base-content">Contraseña</span>}
 					name="password"
 					required
 					rules={[

@@ -30,19 +30,19 @@ function Login() {
 		dispatch(loginAuth(values));
 	};
 	return (
-		<div className="flex h-full items-center justify-center min-h-screen bg-base-50 ">
+		<div className="flex h-full items-center justify-center min-h-screen  ">
 			{contextHolder}
 			<Form
 				form={form}
 				onFinish={handleFinish}
 				layout="vertical"
-				className="w-10-12 sm:w-10/12 lg:w-4/12 -mt-32 flex flex-col gap-2 p-4 bg-base-400 rounded-md"
+				className="w-10-12 sm:w-10/12 lg:w-4/12 -mt-32 flex flex-col gap-2 p-4 text-base-content bg-base-300 rounded-md"
 			>
-				<h2 className="text-xl font-semibold text-center my-2">
+				<h2 className="text-xl font-semibold text-center my-2 text-base-content">
 					Inicia sesión para jugar
 				</h2>
 				<Form.Item
-					label="Correo"
+					label={<span className="text-base-content">Correo</span>}
 					name="email"
 					required
 					rules={[
@@ -58,7 +58,11 @@ function Login() {
 				>
 					<Input placeholder="usuario@example.com" />
 				</Form.Item>
-				<Form.Item label="Contraseña" name="password" required>
+				<Form.Item
+					label={<span className="text-base-content">Contraseña</span>}
+					name="password"
+					required
+				>
 					<Input.Password placeholder="contraseña" />
 				</Form.Item>
 				<Form.Item shouldUpdate>
@@ -67,6 +71,7 @@ function Login() {
 							type="primary"
 							block
 							htmlType="submit"
+							className="btn btn-primary btn-sm text-primary-content"
 							loading={isLoading}
 							disabled={
 								!clientReady ||
