@@ -13,7 +13,7 @@ const Quiz = () => {
 
     useEffect(() => {
         setTitle(quizId);
-        setQuestions(Data(quizId));
+        setQuestions(Data(quizId).filter((question) => !question.resuelta));
     }, []);
 
     return (

@@ -1,6 +1,6 @@
 import {Environment, OrbitControls, Stars} from "@react-three/drei";
 import {Canvas} from "@react-three/fiber";
-import {Suspense, useEffect, useState} from "react";
+import {Suspense, useEffect, useRef, useState} from "react";
 import {GiConcentrationOrb} from "react-icons/gi";
 import Earth from "../../public/earth/Earth";
 import Pegasi from "../../public/51PegasiB/Pegasi";
@@ -25,10 +25,9 @@ function Home() {
     const [instrucciones, setInstrucciones] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
     const [dropdownPosition, setDropdownPosition] = useState({x: 0, y: 0}); // Estado para la posición del dropdown
-
     const {puntos} = useSelector((state) => state.puntos);
-
     const [showVideo, setShowVideo] = useState(false);
+    const bienvenidaModal = useRef(null);
 
     // Función que se ejecuta cuando se presiona el botón
     const handleShowVideo = () => {
@@ -58,6 +57,12 @@ function Home() {
         console.log(instrucciones);
         var modal = document.getElementById("bienvenida");
         if (modal) modal.showModal();
+
+        if (localStorage.getItem("bienvenida") === "true") {
+            bienvenidaModal.current.click();
+        } else {
+            localStorage.setItem("bienvenida", "true");
+        }
     }, []);
     return (
         <div style={{position: "relative", width: "100vw", height: "100vh"}}>
@@ -260,7 +265,7 @@ function Home() {
                                 <form method="dialog">
                                     {/* if there is a button, it will close the modal */}
                                     <button
-                                        className="btn text-2xl sm:text-xl"
+                                        className="btn text-2xl sm:text-xl" ref={bienvenidaModal}
                                         onClick={() => setInstrucciones(true)}
                                     >
                                         Adelante

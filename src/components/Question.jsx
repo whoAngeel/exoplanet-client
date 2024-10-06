@@ -2,21 +2,39 @@ import {useWizard} from "react-use-wizard";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {sumarPuntos} from "../redux/puntos.slice.js";
-import {Link} from "react-router-dom";
+import Data from "./Data.js";
+import {useNavigate} from "react-router-dom";
 
 const Question = ({question, orden}) => {
     const {answers, correctAnswer} = question;
-    const {previousStep, nextStep} = useWizard();
+    const {nextStep} = useWizard();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const {puntos} = useSelector((state) => state.puntos);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [showMessage, setShowMessage] = useState(false)
+
+    const marcarComoResuelta = (index) => {
+        question.resuelta = true;
+        const preguntas = Data();
+    }
 
     const handleAnswerClick = async (index) => {
+        marcarComoResuelta(index);
+
         setSelectedAnswer(index);
         if (index === correctAnswer) {
             dispatch(sumarPuntos());
+        }
+
+        setTimeout(() => {
+            nextStep();
+        }, 1000);
+
+        if (orden === 4) {
+            setShowMessage(true);
             setTimeout(() => {
-                nextStep();
+                navigate("/");
             }, 1000);
         }
     };
@@ -26,7 +44,9 @@ const Question = ({question, orden}) => {
             <div className="bg-white text-purple-800 text-xl font-semibold p-4 rounded-lg mb-4 shadow-md">
                 {question.question}
             </div>
+            {showMessage && (<h2 className="text-lg text-center font-bold">Quiz finalizado con exito 🎉🎉</h2>)}
             <br/>
+
             <div className="space-y-2">
                 {answers.map((answer, index) => (
                     <button
@@ -46,19 +66,8 @@ const Question = ({question, orden}) => {
                 ))}
             </div>
             <div className="flex justify-between mt-6 space-x-2">
-                {orden > 0 && <button className="bg-orange-400 text-white p-2 rounded-lg flex-1"
-                                      onClick={() => previousStep()}>Previous ⏮️
-                </button>}
-                <button className="bg-orange-400 text-white p-2 rounded-lg flex-1">Puntos: {puntos}/50</button>
-                {orden < 4 && (<button className="bg-orange-400 text-white p-2 rounded-lg flex-1"
-                                       onClick={() => nextStep()}>Next ⏭
-                </button>)}
-
-                {orden === 4 && (
-                    <Link to='/' className="bg-green-400 text-white p-2 rounded-lg flex-1">
-                        Finalizar 🏁
-                    </Link>
-                )}
+                <p className="bg-orange-400 text-white p-2 rounded-lg flex-1 text-center">Puntos: {puntos}/50</p>
+                <p className=" text-white p-2 rounded-lg flex-1 text-center">Pregunta {orden + 1} de 5</p>
             </div>
         </div>
     );
