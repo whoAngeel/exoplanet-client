@@ -47,7 +47,6 @@ function Carrusel() {
 		enter: { opacity: 1, scale: 1, x: 0 },
 		exit: { opacity: 0, scale: 0.8, x: -100 },
 	};
-
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth < 768) {
@@ -60,9 +59,10 @@ function Carrusel() {
 		handleResize(); // Llamada inicial
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
+	const safeMargin = window.innerWidth < 768 ? 10 : 0;
 	return (
 		<div className="relative w-full h-screen top-0 overflow-hidden">
-			<div className="flex justify-around items-center space-x-4 mt-20">
+			<div className="flex justify-around items-center space-x-4 pt-20">
 				<button onClick={handlePrev} className="btn btn-circle btn-link">
 					<FaChevronLeft />
 				</button>
@@ -77,33 +77,24 @@ function Carrusel() {
 			</div>
 
 			{/* PLANETA */}
-			<AnimatePresence>
-				<motion.div
-					key={activeIndex}
-					variants={planetVariants}
-					initial="initial"
-					animate="enter"
-					exit="exit"
-					transition={{ duration: 0.5 }}
-					className="relative flex justify-center items-center w-full h-full "
-				>
-					<Canvas className=" ">
-						<ambientLight />
-						<OrbitControls />
-						<XR>
-							<Suspense>
-								<mesh position={[0, 0, 0]} scale={planetScale}>
-									<Exoplanets name={planetaActual.name} />
-								</mesh>
-							</Suspense>
-						</XR>
-					</Canvas>
-				</motion.div>
-			</AnimatePresence>
+			<div className="relative flex top-0  mb-20 justify-center items-center w-full h-full">
+				<Canvas className="w-full h-full">
+					<ambientLight />
+					<OrbitControls enableZoom={false} />
+					<XR>
+						<Suspense>
+							<mesh position={[0, 0, 0]} scale={planetScale}>
+								<Exoplanets name={planetaActual.name} />
+							</mesh>
+						</Suspense>
+					</XR>
+				</Canvas>
+			</div>
 
 			{/* Drawer */}
 			<motion.div
-				className="absolute bottom-0 left-0 w-full bg-base-content text-base-300 rounded-t-3xl"
+				className="absolute bottom-0 left-0 mb-10 w-full bg-base-content text-base-300 rounded-t-3xl"
+				style={{ marginBottom: `${safeMargin}px` }}
 				initial={{ y: "80%" }}
 				animate={{ y: isOpen ? "0%" : "80%" }}
 				transition={{ type: "spring", stiffness: 100 }}
