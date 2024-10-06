@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import ExoplanetsReducer from "./exoplanets/exoplanets.slice";
 import {
 	persistStore,
 	persistReducer,
@@ -19,6 +20,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, AuthReducer);
 
 const rootReducer = combineReducers({
 	auth: persistedAuthReducer,
+	exoplanets: ExoplanetsReducer,
 	// otros reducers
 });
 export const store = configureStore({
