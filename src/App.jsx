@@ -1,5 +1,4 @@
 import AppRouter from "./routes/AppRouter";
-import { ConfigProvider, message } from "antd";
 import { Provider } from "react-redux";
 // import {store, persistor} from
 import { PersistGate } from "redux-persist/integration/react";
@@ -8,9 +7,7 @@ function App() {
 	return (
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<ConfigProvider>
-					<AppRouter />
-				</ConfigProvider>
+				<AppRouter />
 			</PersistGate>
 		</Provider>
 	);
