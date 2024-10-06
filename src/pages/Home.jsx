@@ -1,7 +1,7 @@
-import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect, useState } from "react";
-import { GiConcentrationOrb } from "react-icons/gi";
+import {OrbitControls} from "@react-three/drei";
+import {Canvas} from "@react-three/fiber";
+import {Suspense, useEffect, useState} from "react";
+import {GiConcentrationOrb} from "react-icons/gi";
 import Earth from "../../public/earth/Earth";
 import Pegasi from "../../public/51PegasiB/Pegasi";
 import Kepler452b from "../../public/kepler452b/Kepler452b";
@@ -9,46 +9,47 @@ import Corot7bfiery from "../../public/corot7bfiery/Corot7bfiery";
 import Kepler186f from "../../public/kepler186f/Kepler186f";
 import Kepler22b from "../../public/kepler22b/Kepler22b";
 import Proxima from "../../public/proxima/Proxima";
-import { ARButton, XR } from "@react-three/xr";
+import {ARButton, XR} from "@react-three/xr";
 import images from "../constants/images";
 import { useNavigate } from "react-router-dom";
 import { Flex, Progress } from "antd";
 
 import { green, red } from "@ant-design/colors";
+import {Link, useNavigate} from "react-router-dom";
 
 function Home() {
-  const navigate = useNavigate();
-  const [dialogo, setDialogo] = useState(1);
-  const [instrucciones, setInstrucciones] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
-  const [dropdownPosition, setDropdownPosition] = useState({ x: 0, y: 0 }); // Estado para la posición del dropdown
+    const navigate = useNavigate();
+    const [dialogo, setDialogo] = useState(1);
+    const [instrucciones, setInstrucciones] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
+    const [dropdownPosition, setDropdownPosition] = useState({x: 0, y: 0}); // Estado para la posición del dropdown
 
-  const handleMeshClick = (event) => {
-    // Obtener la posición del clic
-    const { clientX, clientY } = event;
-    setDropdownPosition({ x: clientX, y: clientY }); // Actualiza la posición del dropdown
-    setShowDropdown(!showDropdown); // Muestra el dropdown
-  };
+    const handleMeshClick = (event) => {
+        // Obtener la posición del clic
+        const {clientX, clientY} = event;
+        setDropdownPosition({x: clientX, y: clientY}); // Actualiza la posición del dropdown
+        setShowDropdown(!showDropdown); // Muestra el dropdown
+    };
 
-  // Función para cerrar el dropdown
-  const closeDropdown = () => {
-    setShowDropdown(false);
-  };
+    // Función para cerrar el dropdown
+    const closeDropdown = () => {
+        setShowDropdown(false);
+    };
 
-  useEffect(() => {
-    // Mostrar el modal al cargar la página
-    console.log(instrucciones);
-    var modal = document.getElementById("bienvenida");
-    if (modal) modal.showModal();
-  }, []);
-  return (
-    <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <div
-        className="text-black top-[10px] right-[10px] absolute  rounded-xl p-2	z-30"
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
-      >
-        <button className="text-center" onClick={() => navigate("/v2")}>
-          <GiConcentrationOrb size="30px" className="mx-auto" />
+    useEffect(() => {
+        // Mostrar el modal al cargar la página
+        console.log(instrucciones);
+        var modal = document.getElementById("bienvenida");
+        if (modal) modal.showModal();
+    }, []);
+    return (
+        <div style={{position: "relative", width: "100vw", height: "100vh"}}>
+            <div
+                className="text-black top-[10px] right-[10px] absolute  rounded-xl p-2	z-30"
+                style={{backgroundColor: "rgba(255, 255, 255, 0.8)"}}
+            >
+                <button className="text-center" onClick={() => navigate("/v2")}>
+                    <GiConcentrationOrb size="30px" className="mx-auto"/>
 
           <p className="text-sm font-bold">Colección</p>
         </button>
@@ -86,14 +87,13 @@ function Home() {
           }}
         >
           <ul>
-            <li>
-              <a href="youtube.com">Item 1</a>
-            </li>
-            <li>
-              <a href="#">Item 2</a>
-            </li>
-          </ul>
-          <button onClick={closeDropdown}>Cerrar</button>
+                        <li>
+                            <Link
+                                className='text-black text-xl'
+                                to='/minigame/Tierra'>Quiz</Link>
+                        </li>
+                    </ul>
+                    <button className='text-black text-xl' onClick={closeDropdown}>Cerrar</button>
         </div>
       )}
       {/* Elementos HTML superpuestos */}
