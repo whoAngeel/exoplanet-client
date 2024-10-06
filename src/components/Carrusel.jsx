@@ -45,7 +45,7 @@ function Carrusel() {
 	return (
 		<div className="relative w-full h-screen top-0 overflow-hidden ">
 			<h1 className="text-center text-3xl pt-10 font-bold ">
-				{exoplanets[activeIndex].name}
+				{exoplanets[activeIndex].nombre}
 			</h1>
 
 			<button
@@ -64,10 +64,10 @@ function Carrusel() {
 					animate="enter"
 					exit="exit"
 					transition={{ duration: 0.5 }}
-					className="absolute  flex justify-center items-center w-full   h-full pb-32"
+					className="absolute  flex justify-center items-center w-full h-full pb-32"
 				>
 					<div
-						className={`w-56 h-56 rounded-full mx-auto ${exoplanets[activeIndex].color}`}
+						className={`w-56 h-56 rounded-full mx-auto bg-[${exoplanets[activeIndex].color}] `}
 					/>
 				</motion.div>
 			</AnimatePresence>
@@ -102,12 +102,9 @@ function Carrusel() {
 
 				<div className="p-4">
 					<h2 className="text-xl font-bold">
-						{exoplanets[activeIndex].name}
+						{exoplanets[activeIndex].nombre}
 					</h2>
-					<p>
-						Este contenido es visible solo cuando el drawer está
-						completamente abierto.
-					</p>
+					<p>{exoplanets[activeIndex].descripcion}</p>
 					<div className="flex w-full items-center justify-center mt-2 ">
 						<button className="btn btn-secondary  btn-wide">
 							Realidad Aumentada
