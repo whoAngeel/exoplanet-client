@@ -12,6 +12,9 @@ import Proxima from "../../public/proxima/Proxima";
 import { ARButton, XR } from "@react-three/xr";
 import images from "../constants/images";
 import { useNavigate } from "react-router-dom";
+import { Flex, Progress } from "antd";
+
+import { green, red } from "@ant-design/colors";
 
 function Home() {
   const navigate = useNavigate();
@@ -50,6 +53,24 @@ function Home() {
           <p className="text-sm font-bold">Colección</p>
         </button>
       </div>
+      <div
+        className="text-black top-[10px] sm:right-[62%]  right-[100px] absolute  rounded-xl p-2	z-30"
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+      >
+        <Flex gap="small" vertical>
+          <Progress
+            percent={100}
+            steps={5}
+            size="small"
+            strokeColor={green[6]}
+          />
+          <Progress
+            percent={60}
+            steps={5}
+            strokeColor={[green[6], green[6], red[5]]}
+          />
+        </Flex>
+      </div>
       {showDropdown && (
         <div
           style={{
@@ -76,7 +97,7 @@ function Home() {
         </div>
       )}
       {/* Elementos HTML superpuestos */}
-      {instrucciones && (
+      {(instrucciones && dialogo < 3) && (
         <div
           style={{
             position: "absolute",
@@ -87,7 +108,7 @@ function Home() {
             padding: "10px",
             borderRadius: "8px",
           }}
-          className="text-black"
+          className="text-black sm:mt-20"
         >
           <div className="flex flex-row">
             <div>
@@ -121,20 +142,23 @@ function Home() {
         </div>
       )}
 
-      <ARButton />
+      <ARButton className="mb-10" />
       <Canvas style={{ position: "absolute", top: 0, left: 0, zIndex: 0 }}>
         <XR>
           <ambientLight />
           <OrbitControls />
           <Suspense fallback={null}>
             <mesh position={[0, 0, -2.7]} onClick={handleMeshClick}>
-              <Proxima/>
+              <Earth />
             </mesh>
           </Suspense>
         </XR>
       </Canvas>
       {!instrucciones && (
-        <dialog id="bienvenida" className="modal modal-open fixed inset-0 flex items-center justify-center !w-[100%] !max-w-[100%] ">
+        <dialog
+          id="bienvenida"
+          className="modal modal-open fixed inset-0 flex items-center justify-center !w-[100%] !max-w-[100%] "
+        >
           <div className="modal-box  max-w-5xl flex flex-row sm:flex-col mt-5">
             <div>
               <img src={images.laika} className="sm:w-48 w-96 mt-5" />
