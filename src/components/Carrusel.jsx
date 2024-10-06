@@ -13,7 +13,7 @@ import Exoplanets from "./Exoplanets";
 import { Canvas } from "@react-three/fiber";
 import { XR } from "@react-three/xr";
 import { OrbitControls } from "@react-three/drei";
-import { Descriptions } from "antd";
+import { Descriptions, Spin } from "antd";
 
 function Carrusel() {
 	const { exoplanets } = useSelector((state) => state.exoplanets);
@@ -49,7 +49,7 @@ function Carrusel() {
 
 	return (
 		<div className="relative w-full h-screen top-0 overflow-hidden">
-			<h1 className="text-center text-3xl pt-10 font-bold">
+			<h1 className="text-center text-3xl pt-20 font-bold">
 				{planetaActual.nombre}
 			</h1>
 
@@ -61,32 +61,41 @@ function Carrusel() {
 			</button>
 
 			{/* PLANETA */}
-			<AnimatePresence>
-				<motion.div
-					key={activeIndex}
-					variants={planetVariants}
-					initial="initial"
-					animate="enter"
-					exit="exit"
-					transition={{ duration: 0.5 }}
-					className="absolute flex justify-center items-center w-full h-full pb-32"
-				>
-					<Canvas
-						className="flex w-full justify-center items-center"
-						style={{ position: "absolute", top: 0, left: 0, zIndex: 0 }}
+			<div className="w-full h-full  absolute">
+				<AnimatePresence>
+					<motion.div
+						key={activeIndex}
+						variants={planetVariants}
+						initial="initial"
+						animate="enter"
+						exit="exit"
+						transition={{ duration: 0.5 }}
+						className="absolute flex justify-center items-center w-full h-full"
 					>
-						<XR>
+						<Canvas
+							style={{ width: "100%", height: "80vh", zIndex: 0 }}
+							className="flex items-center justify-center "
+						>
 							<ambientLight />
 							<OrbitControls />
-							<Suspense fallback={<p>Cargando modelo 3D...</p>}>
-								<mesh>
-									<Exoplanets name={planetaActual.nombre} />
-								</mesh>
-							</Suspense>
-						</XR>
-					</Canvas>
-				</motion.div>
-			</AnimatePresence>
+							<XR>
+								<Suspense
+									fallback={
+										<Spin
+											size="large"
+											className="centered-spinner"
+										/>
+									}
+								>
+									<mesh>
+										<Exoplanets name={planetaActual.nombre} />
+									</mesh>
+								</Suspense>
+							</XR>
+						</Canvas>
+					</motion.div>
+				</AnimatePresence>
+			</div>
 
 			<button
 				onClick={handleNext}
@@ -121,6 +130,16 @@ function Carrusel() {
 						<Descriptions.Item label="Tipo">
 							{planetaActual.tipo}
 						</Descriptions.Item>
+						<Descriptions.Item label="Distancia">
+							{planetaActual.distancia}
+						</Descriptions.Item>
+						<Descriptions label="Periodo Orbital">
+							{planetaActual.periodoOrbital}
+						</Descriptions>
+						<Descriptions.Item label="Temperatura">
+							{planetaActual.temperatura}
+						</Descriptions.Item>
+						<p className="mt-1">{planetaActual.descripcion}</p>
 					</Descriptions>
 				</div>
 			</motion.div>
