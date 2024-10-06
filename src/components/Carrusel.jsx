@@ -72,6 +72,7 @@ function Carrusel() {
 					className="absolute flex justify-center items-center w-full h-full pb-32"
 				>
 					<Canvas
+						className="flex w-full justify-center items-center"
 						style={{ position: "absolute", top: 0, left: 0, zIndex: 0 }}
 					>
 						<XR>
@@ -112,7 +113,11 @@ function Carrusel() {
 				</div>
 
 				<div className="p-4">
-					<Descriptions title={planetaActual.nombre} bordered>
+					<Descriptions
+						title={planetaActual.nombre}
+						column={1}
+						size="small"
+					>
 						<Descriptions.Item label="Tipo">
 							{planetaActual.tipo}
 						</Descriptions.Item>
