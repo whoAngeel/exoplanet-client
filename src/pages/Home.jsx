@@ -199,7 +199,7 @@ function Home() {
       <Canvas style={{ 
 		position: "absolute", top: 0, left: 0, zIndex: 0 }}
 		onCreated={(state) => {
-			state.gl.setClearColor('#c24038'); // Cambia el color a tu preferencia
+			state.gl.setClearColor('#0e0e10'); // Cambia el color a tu preferencia
 		  }}
   >
         <XR>
