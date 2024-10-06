@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import "swiper/css";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -20,6 +20,7 @@ function Carrusel() {
 	console.log(exoplanets);
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isOpen, setIsOpen] = useState(false);
+	const [planetScale, setPlanetScale] = useState([2, 2, 2]);
 	const planetaActual = exoplanets[activeIndex];
 
 	const handleToggleDrawer = () => {
@@ -47,62 +48,58 @@ function Carrusel() {
 		exit: { opacity: 0, scale: 0.8, x: -100 },
 	};
 
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth < 768) {
+				setPlanetScale([1.5, 1.5, 1.5]); // Para pantallas más pequeñas
+			} else {
+				setPlanetScale([2, 2, 2]); // Pantallas más grandes
+			}
+		};
+		window.addEventListener("resize", handleResize);
+		handleResize(); // Llamada inicial
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
 	return (
 		<div className="relative w-full h-screen top-0 overflow-hidden">
-			<h1 className="text-center text-3xl pt-20 font-bold">
-				{planetaActual.nombre}
-			</h1>
+			<div className="flex justify-around items-center space-x-4 mt-20">
+				<button onClick={handlePrev} className="btn btn-circle btn-link">
+					<FaChevronLeft />
+				</button>
 
-			<button
-				onClick={handlePrev}
-				className="absolute z-10 left-0 top-1/2 transform -translate-y-1/2 btn btn-circle btn-link"
-			>
-				<FaChevronLeft />
-			</button>
+				<h1 className="text-center text-3xl font-bold">
+					{planetaActual.nombre}
+				</h1>
 
-			{/* PLANETA */}
-			<div className="w-full h-full  absolute">
-				<AnimatePresence>
-					<motion.div
-						key={activeIndex}
-						variants={planetVariants}
-						initial="initial"
-						animate="enter"
-						exit="exit"
-						transition={{ duration: 0.5 }}
-						className="absolute flex justify-center items-center w-full h-full"
-					>
-						<Canvas
-							style={{ width: "100%", height: "80vh", zIndex: 0 }}
-							className="flex items-center justify-center "
-						>
-							<ambientLight />
-							<OrbitControls />
-							<XR>
-								<Suspense
-									fallback={
-										<Spin
-											size="large"
-											className="centered-spinner"
-										/>
-									}
-								>
-									<mesh>
-										<Exoplanets name={planetaActual.nombre} />
-									</mesh>
-								</Suspense>
-							</XR>
-						</Canvas>
-					</motion.div>
-				</AnimatePresence>
+				<button onClick={handleNext} className="btn btn-circle btn-link">
+					<FaChevronRight />
+				</button>
 			</div>
 
-			<button
-				onClick={handleNext}
-				className="absolute z-10 right-0 top-1/2 transform -translate-y-1/2 btn btn-circle btn-link"
-			>
-				<FaChevronRight />
-			</button>
+			{/* PLANETA */}
+			<AnimatePresence>
+				<motion.div
+					key={activeIndex}
+					variants={planetVariants}
+					initial="initial"
+					animate="enter"
+					exit="exit"
+					transition={{ duration: 0.5 }}
+					className="relative flex justify-center items-center w-full h-full "
+				>
+					<Canvas className=" ">
+						<ambientLight />
+						<OrbitControls />
+						<XR>
+							<Suspense>
+								<mesh position={[0, 0, 0]} scale={planetScale}>
+									<Exoplanets name={planetaActual.name} />
+								</mesh>
+							</Suspense>
+						</XR>
+					</Canvas>
+				</motion.div>
+			</AnimatePresence>
 
 			{/* Drawer */}
 			<motion.div

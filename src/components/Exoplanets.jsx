@@ -8,11 +8,15 @@ import Kepler22b from "../../public/kepler22b/Kepler22b";
 import Proxima from "../../public/proxima/Proxima";
 
 export default function Exoplanets({ name }) {
-  return <>{name == "Tierra" && <Earth/>}
-  {name == "Pegasi" && <Pegasi/>}
-  {name == "Kepler452b" && <Kepler452b/>}
-  {name == "Corot7bfiery" && <Corot7bfiery/>}
-  {name == "Kepler186f"  && <Kepler186f/>}
-  {name == "Kepler22b" && <Kepler22b/>}
-  {name == "Proxima" && <Proxima/>}</>;
+	return (
+		<>
+			{name == "Tierra" && <Earth />}
+			{name == "Pegasi" && <Pegasi />}
+			{name == "Kepler452b" && <Kepler452b />}
+			{name == "Corot7bfiery" && <Corot7bfiery />}
+			{name == "Kepler186f" && <Kepler186f />}
+			{name == "Kepler22b" && <Kepler22b />}
+			{name == "Proxima" && <Proxima />}
+		</>
+	);
 }
