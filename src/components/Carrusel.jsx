@@ -10,6 +10,7 @@ import {
 	FaChevronRight,
 } from "react-icons/fa";
 import DrawerExoPlanetInfo from "./DrawerExoPlanetInfo";
+import { Descriptions } from "antd";
 
 function Carrusel() {
 	const { exoplanets } = useSelector((state) => state.exoplanets);
@@ -99,7 +100,11 @@ function Carrusel() {
 
 				<div className="p-4">
 					<h2 className="text-xl font-bold">{planetaActual.nombre}</h2>
-					<p>{planetaActual.descripcion}</p>
+					<Descriptions size="small" bordered>
+						<Descriptions.Item label="Tipo">
+							<p> {planetaActual.tipo}</p>
+						</Descriptions.Item>
+					</Descriptions>
 					<div className="flex w-full items-center justify-center mt-2 ">
 						<button className="btn btn-secondary  btn-wide">
 							Realidad Aumentada
