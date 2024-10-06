@@ -16,6 +16,7 @@ function Carrusel() {
 	console.log(exoplanets);
 	const [activeIndex, setActiveIndex] = useState(0);
 	const [isOpen, setIsOpen] = useState(false);
+	const planetaActual = exoplanets[activeIndex];
 
 	const handleToggleDrawer = () => {
 		setIsOpen(!isOpen);
@@ -58,7 +59,6 @@ function Carrusel() {
 			{/* PLANETA */}
 			<AnimatePresence>
 				<motion.div
-					key={activeIndex}
 					variants={planetVariants}
 					initial="initial"
 					animate="enter"
@@ -67,7 +67,8 @@ function Carrusel() {
 					className="absolute  flex justify-center items-center w-full h-full pb-32"
 				>
 					<div
-						className={`w-56 h-56 rounded-full mx-auto bg-[${exoplanets[activeIndex].color}] `}
+						className="w-56 h-56 rounded-full mx-auto"
+						style={{ backgroundColor: planetaActual.color }}
 					/>
 				</motion.div>
 			</AnimatePresence>
@@ -93,18 +94,12 @@ function Carrusel() {
 					className="flex justify-center items-center py-4 cursor-pointer"
 					onClick={handleToggleDrawer}
 				>
-					{isOpen ? (
-						<FaChevronDown className="text-base-300" />
-					) : (
-						<FaChevronUp className="text-base-300" />
-					)}
+					<FaChevronUp className={isOpen ? "rotate-180" : ""} />
 				</div>
 
 				<div className="p-4">
-					<h2 className="text-xl font-bold">
-						{exoplanets[activeIndex].nombre}
-					</h2>
-					<p>{exoplanets[activeIndex].descripcion}</p>
+					<h2 className="text-xl font-bold">{planetaActual.nombre}</h2>
+					<p>{planetaActual.descripcion}</p>
 					<div className="flex w-full items-center justify-center mt-2 ">
 						<button className="btn btn-secondary  btn-wide">
 							Realidad Aumentada
