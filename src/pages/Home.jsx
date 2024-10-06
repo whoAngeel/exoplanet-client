@@ -21,6 +21,7 @@ import {useSelector} from "react-redux";
 function Home() {
     const navigate = useNavigate();
     const [dialogo, setDialogo] = useState(1);
+	const [planeta, setPlaneta] = useState(1);
     const [instrucciones, setInstrucciones] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
     const [dropdownPosition, setDropdownPosition] = useState({x: 0, y: 0}); // Estado para la posición del dropdown
@@ -32,6 +33,7 @@ function Home() {
     // Función que se ejecuta cuando se presiona el botón
     const handleShowVideo = () => {
         setShowVideo(true);
+		setPlaneta(planeta + 1);
     };
 
     // Función para ocultar el video después de que termina
@@ -152,7 +154,7 @@ function Home() {
                 </div>
             )}
             {/* Elementos HTML superpuestos */}
-            {instrucciones && dialogo < 3 && (
+            {instrucciones && dialogo < 3 && puntos == 0 && (
                 <div
                     style={{
                         position: "absolute",
@@ -171,14 +173,14 @@ function Home() {
                         </div>
                         <div className="max-w-80">
                             <h1 className="font-semibold ">Comencemos</h1>
-                            {dialogo == 1 && (
+                            {dialogo == 1 && puntos == 0 && (
                                 <p>
                                     Como puedes ver en la parte de abajo tienes a un conocido y
                                     famoso planeta, nuestro planeta Tierra, este será nuestro
                                     punto de inicio
                                 </p>
                             )}
-                            {dialogo == 2 && (
+                            {dialogo == 2 && puntos == 0 && (
                                 <p>
                                     Presionando sobre el planeta se te desplegaran las diferentes
                                     actividades que puedes hacer en el
@@ -211,7 +213,14 @@ function Home() {
                     <OrbitControls/>
                     <Suspense fallback={null}>
                         <mesh position={[0, 0, -2.7]} onClick={handleMeshClick}>
-                            <Earth/>
+							{planeta == 1 && 
+							  <Earth/>
+							}
+							{
+								planeta == 2 && 
+								<Pegasi/>
+							}
+                            
                         </mesh>
                     </Suspense>
                 </XR>
@@ -227,7 +236,7 @@ function Home() {
                 />
                 <Environment preset="city"/>
             </Canvas>
-            {!instrucciones && (
+            {!instrucciones && puntos == 0 && (
                 <dialog
                     id="bienvenida"
                     className="modal modal-open fixed inset-0 flex items-center justify-center !w-[100%] !max-w-[100%] "
