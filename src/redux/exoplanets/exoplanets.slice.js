@@ -12,6 +12,7 @@ const initialState = {
 			descripcion:
 				"La Tierra es el único planeta conocido por albergar vida en el sistema solar. Tiene agua líquida y una atmósfera protectora.",
 			color: "#4CAF50", // Verde Tierra
+			name: "Tierra",
 		},
 		{
 			nombre: "51 Pegasi b",
@@ -22,6 +23,7 @@ const initialState = {
 			descripcion:
 				"El primer exoplaneta descubierto alrededor de una estrella similar al Sol. Es un Júpiter caliente debido a su cercanía a la estrella.",
 			color: "#FFD700", // Dorado brillante
+			name: "Pegasi",
 		},
 		{
 			nombre: "Kepler 452b",
@@ -32,6 +34,7 @@ const initialState = {
 			descripcion:
 				"Kepler 452b está en la zona habitable de su estrella y es conocido como el 'primo de la Tierra' debido a su similitud.",
 			color: "#87CEEB", // Azul cielo
+			name: "Kepler452b",
 		},
 		{
 			nombre: "Corot 7b",
@@ -42,6 +45,7 @@ const initialState = {
 			descripcion:
 				"Un planeta extremadamente cercano a su estrella, lo que hace que su superficie esté llena de lava debido a las altas temperaturas.",
 			color: "#FF4500", // Naranja ardiente
+			name: "Corot7bfiery",
 		},
 		{
 			nombre: "Kepler 186f",
@@ -52,26 +56,7 @@ const initialState = {
 			descripcion:
 				"Este exoplaneta se encuentra en la zona habitable de su estrella, una enana roja, lo que lo hace un candidato interesante para la búsqueda de vida.",
 			color: "#8B4513", // Marrón rojizo
-		},
-		{
-			nombre: "Proxima b",
-			tipo: "Planeta terrestre",
-			distancia: "4.24 años luz",
-			periodoOrbital: "11.2 días",
-			temperatura: "-39°C",
-			descripcion:
-				"Es el exoplaneta más cercano a la Tierra, orbitando la estrella más cercana, Proxima Centauri, dentro de su zona habitable.",
-			color: "#483D8B", // Azul oscuro
-		},
-		{
-			nombre: "55 Cancri e",
-			tipo: "Super-Tierra (Planeta de carbono)",
-			distancia: "40.9 años luz",
-			periodoOrbital: "0.74 días",
-			temperatura: "2,000°C",
-			descripcion:
-				"Conocido como el 'planeta de diamante' debido a su alta proporción de carbono, tiene una superficie extremadamente caliente.",
-			color: "#DAA520", // Dorado oscuro
+			name: "Kepler186f",
 		},
 	],
 	error: null,
