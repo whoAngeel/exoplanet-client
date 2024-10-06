@@ -11,8 +11,10 @@ import Kepler22b from "../../public/kepler22b/Kepler22b";
 import Proxima from "../../public/proxima/Proxima";
 import { ARButton, XR } from "@react-three/xr";
 import images from "../constants/images";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   const [dialogo, setDialogo] = useState(1);
   const [instrucciones, setInstrucciones] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
@@ -38,9 +40,12 @@ function Home() {
   }, []);
   return (
     <div style={{ position: "relative", width: "100vw", height: "100vh" }}>
-      <div className="text-black top-2 right-2 absolute z-10 rounded-xl p-2	" style={{backgroundColor:"rgba(255, 255, 255, 0.8)"}} >
-        <button className="text-center">
-          <GiConcentrationOrb size="30px" className="mx-auto"/>
+      <div
+        className="text-black top-[10px] right-[10px] absolute  rounded-xl p-2	z-30"
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.8)" }}
+      >
+        <button className="text-center" onClick={() => navigate("/v2")}>
+          <GiConcentrationOrb size="30px" className="mx-auto" />
 
           <p className="text-sm font-bold">Colección</p>
         </button>
@@ -78,7 +83,7 @@ function Home() {
             top: "10px",
             left: "10px",
             zIndex: 1,
-            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backgroundColor: "rgba(255, 255, 255)",
             padding: "10px",
             borderRadius: "8px",
           }}
@@ -129,14 +134,14 @@ function Home() {
         </XR>
       </Canvas>
       {!instrucciones && (
-        <dialog id="bienvenida" className="modal">
-          <div className="modal-box w-11/12 max-w-5xl flex flex-row sm:flex-col">
+        <dialog id="bienvenida" className="modal modal-open fixed inset-0 flex items-center justify-center !w-[100%] !max-w-[100%] ">
+          <div className="modal-box  max-w-5xl flex flex-row sm:flex-col mt-5">
             <div>
-              <img src={images.laika} className="w-48" />
+              <img src={images.laika} className="sm:w-48 w-96 mt-5" />
             </div>
             <div>
-              <h3 className="font-bold text-lg">Hola!</h3>
-              <p className="py-4">
+              <h3 className="font-bold text-5xl sm:text-3xl">Hola!</h3>
+              <p className="py-4 sm:text-xl">
                 Mi nombre es Laika y te doy la bienvenida a nuestro universo..{" "}
                 <br />
                 ¿Estas listo para adentrarte a esta aventura conmigo y descubrir
@@ -149,7 +154,7 @@ function Home() {
                 <form method="dialog">
                   {/* if there is a button, it will close the modal */}
                   <button
-                    className="btn"
+                    className="btn text-2xl sm:text-xl"
                     onClick={() => setInstrucciones(true)}
                   >
                     Adelante

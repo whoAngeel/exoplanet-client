@@ -66,6 +66,7 @@ function Carrusel() {
 					transition={{ duration: 0.5 }}
 					className="absolute  flex justify-center items-center w-full   h-full pb-32"
 				>
+					
 					<div
 						className={`w-56 h-56 rounded-full mx-auto ${exoplanets[activeIndex].color}`}
 					/>
@@ -106,7 +107,7 @@ function Carrusel() {
 					</h2>
 					<p>
 						Este contenido es visible solo cuando el drawer está
-						completamente abierto.
+						completamente abierto
 					</p>
 					<div className="flex w-full items-center justify-center mt-2 ">
 						<button className="btn btn-secondary  btn-wide">
