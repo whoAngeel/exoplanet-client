@@ -1,40 +1,28 @@
 import {useWizard} from "react-use-wizard";
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {sumarPuntos} from "../redux/puntos.slice.js";
 import {Link} from "react-router-dom";
-import Countdown from "react-countdown";
 
-const Question = ({question, title, orden}) => {
+const Question = ({question, orden}) => {
     const {answers, correctAnswer} = question;
-    const {handleStep, previousStep, nextStep} = useWizard();
+    const {previousStep, nextStep} = useWizard();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const {puntos} = useSelector((state) => state.puntos);
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log(Date.now() + 100000)
-    }, []);
-
-    handleStep(() => {
-        console.log("Question", question);
-    });
-
-    const handleAnswerClick = (index) => {
+    const handleAnswerClick = async (index) => {
         setSelectedAnswer(index);
+        if (index === correctAnswer) {
+            dispatch(sumarPuntos());
+            setTimeout(() => {
+                nextStep();
+            }, 1000);
+        }
     };
 
     return (
-        <div
-            className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 p-4 rounded-xl shadow-lg text-white max-w-lg mx-auto">
-            <div className="flex justify-between items-center mb-4">
-                <Link
-                    to={'..'}
-                    className="text-white text-lg">
-                    ←
-                </Link>
-                <span className="text-lg font-semibold">{title}</span>
-                <button className="text-white text-lg">
-                    ⚙️
-                </button>
-            </div>
-
+        <div>
             <div className="bg-white text-purple-800 text-xl font-semibold p-4 rounded-lg mb-4 shadow-md">
                 {question.question}
             </div>
@@ -46,7 +34,9 @@ const Question = ({question, title, orden}) => {
                         onClick={() => handleAnswerClick(index)}
                         className={`w-full text-left p-3 rounded-lg text-lg border transition ${
                             selectedAnswer === index
-                                ? 'bg-green-200 text-green-800 border-green-300'
+                                ? selectedAnswer === correctAnswer
+                                    ? 'bg-green-500 text-white border-green-500'
+                                    : 'bg-red-500 text-white border-red-500'
                                 : 'bg-white text-gray-800 border-gray-300'
                         }`}
                     >
@@ -55,15 +45,20 @@ const Question = ({question, title, orden}) => {
                     </button>
                 ))}
             </div>
-
             <div className="flex justify-between mt-6 space-x-2">
                 {orden > 0 && <button className="bg-orange-400 text-white p-2 rounded-lg flex-1"
                                       onClick={() => previousStep()}>Previous ⏮️
                 </button>}
-                <button className="bg-orange-400 text-white p-2 rounded-lg flex-1">Puntos: 50/50</button>
+                <button className="bg-orange-400 text-white p-2 rounded-lg flex-1">Puntos: {puntos}/50</button>
                 {orden < 4 && (<button className="bg-orange-400 text-white p-2 rounded-lg flex-1"
                                        onClick={() => nextStep()}>Next ⏭
                 </button>)}
+
+                {orden === 4 && (
+                    <Link to='/' className="bg-green-400 text-white p-2 rounded-lg flex-1">
+                        Finalizar 🏁
+                    </Link>
+                )}
             </div>
         </div>
     );
