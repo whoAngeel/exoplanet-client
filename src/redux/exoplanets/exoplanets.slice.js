@@ -5,7 +5,7 @@ const initialState = {
 	exoplanets: [
 		{
 			id: 1,
-			name: "Tierra 266",
+			name: "Tierra",
 			distance: "1234",
 			diameter: "19",
 			radius: "3.2",
@@ -13,7 +13,7 @@ const initialState = {
 		},
 		{
 			id: 2,
-			name: "Éxodo 3",
+			name: "Pegasi",
 			distance: "1234",
 			diameter: "19",
 			radius: "3.2",
@@ -21,7 +21,31 @@ const initialState = {
 		},
 		{
 			id: 3,
-			name: "Tierra 12",
+			name: "Kepler452b",
+			distance: "1234cm",
+			diameter: "19cm",
+			radius: "3.2cm",
+			color: "bg-red-500",
+		},
+		{
+			id: 4,
+			name: "Corot7bfiery",
+			distance: "1234cm",
+			diameter: "19cm",
+			radius: "3.2cm",
+			color: "bg-red-500",
+		},
+		{
+			id: 5,
+			name: "Kepler186f",
+			distance: "1234cm",
+			diameter: "19cm",
+			radius: "3.2cm",
+			color: "bg-red-500",
+		},
+		{
+			id: 6,
+			name: "Kepler22b",
 			distance: "1234cm",
 			diameter: "19cm",
 			radius: "3.2cm",

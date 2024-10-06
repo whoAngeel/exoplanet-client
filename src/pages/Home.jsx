@@ -128,7 +128,7 @@ function Home() {
           <OrbitControls />
           <Suspense fallback={null}>
             <mesh position={[0, 0, -2.7]} onClick={handleMeshClick}>
-              <Earth />
+              <Proxima/>
             </mesh>
           </Suspense>
         </XR>
