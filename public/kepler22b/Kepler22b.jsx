@@ -13,7 +13,7 @@ import { useGLTF } from '@react-three/drei'
 export default function Model(props) {
   const { nodes, materials } = useGLTF('kepler22b/kepler22b.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={0.4, 0.4, 0.4}>
       <mesh geometry={nodes.Object_4.geometry} material={materials['Material.001']} scale={[6.853, 6.999, 6.782]} />
     </group>
   )

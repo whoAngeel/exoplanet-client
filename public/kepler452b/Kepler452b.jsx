@@ -13,7 +13,7 @@ import { useGLTF } from '@react-three/drei'
 export default function Model(props) {
   const { nodes, materials } = useGLTF('kepler452b/kepler452b.gltf')
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} scale={[0.01, 0.01 ,0.01]}>
       <mesh geometry={nodes['����������001_CLOUDS_0'].geometry} material={materials.CLOUDS} rotation={[-Math.PI / 2, 0, 0]} scale={103.649} />
       <mesh geometry={nodes['����������_Kepler_0'].geometry} material={materials.Kepler} rotation={[-Math.PI / 2, 0, 0]} scale={100} />
     </group>
