@@ -44,7 +44,7 @@ function Carrusel() {
 
 	return (
 		<div className="relative w-full h-screen top-0 overflow-hidden ">
-			<h1 className="text-center text-2xl pt-10 ">
+			<h1 className="text-center text-3xl pt-10 font-bold ">
 				{exoplanets[activeIndex].name}
 			</h1>
 
@@ -104,10 +104,6 @@ function Carrusel() {
 					<h2 className="text-xl font-bold">
 						{exoplanets[activeIndex].name}
 					</h2>
-					<p>
-						Aquí está el contenido de mi modal o drawer. Puedes agregar
-						cualquier información aquí.
-					</p>
 					<p>
 						Este contenido es visible solo cuando el drawer está
 						completamente abierto.
