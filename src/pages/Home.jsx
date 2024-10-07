@@ -59,7 +59,7 @@ function Home() {
         if (modal) modal.showModal();
 
         if (localStorage.getItem("bienvenida") === "true") {
-            bienvenidaModal.current.click();
+			if(bienvenidaModal.current)bienvenidaModal.current.click();
         } else {
             localStorage.setItem("bienvenida", "true");
         }
@@ -107,7 +107,7 @@ function Home() {
                 </button>
             </div>
             <div
-                className="text-black top-[10px] sm:right-[62%]  right-[100px] absolute  rounded-xl p-2	z-30"
+                className="text-black top-[10px] sm:right-[62%]  right-[200px] absolute  rounded-xl p-2	z-30"
                 style={{backgroundColor: "rgba(255, 255, 255, 0.8)"}}
             >
                 <Flex gap="small" vertical>
@@ -159,7 +159,7 @@ function Home() {
                 </div>
             )}
             {/* Elementos HTML superpuestos */}
-            {instrucciones && dialogo < 3 && puntos == 0 && (
+            {instrucciones && dialogo <= 3 && puntos == 0 && (
                 <div
                     style={{
                         position: "absolute",
@@ -191,7 +191,11 @@ function Home() {
                                     actividades que puedes hacer en el
                                 </p>
                             )}
-
+							{dialogo == 3 && puntos == 0 && (
+                                <p>
+                                    Provemos con un quiz, si obtienes un 100 podremos cambiar de escenario
+                                </p>
+                            )}
                             <button
                                 className="btn ml-56"
                                 onClick={() => {
