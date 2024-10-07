@@ -15,10 +15,15 @@ export const puntosSlice = createSlice({
         restarPuntos: (state) => {
             state.puntos -= 10;
         },
+        limpiar: (state) => {
+            state.puntos = 0;
+        }
     },
 });
 
+
+
 export const {
-    sumarPuntos, restarPuntos
+    sumarPuntos, restarPuntos, limpiar
 } = puntosSlice.actions;
 export default puntosSlice.reducer;

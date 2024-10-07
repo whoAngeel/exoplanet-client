@@ -16,7 +16,8 @@ import video from "../assets/video/viaje.mp4";
 import { green, red } from "@ant-design/colors";
 import { Link, useNavigate } from "react-router-dom";
 import { GiGunshot } from "react-icons/gi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { limpiar } from "../redux/puntos.slice";
 
 function Home() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ function Home() {
   const [showDropdown, setShowDropdown] = useState(false); // Estado para mostrar/ocultar dropdown
   const [dropdownPosition, setDropdownPosition] = useState({ x: 0, y: 0 }); // Estado para la posición del dropdown
   const { puntos } = useSelector((state) => state.puntos);
+  const dispatch = useDispatch();
   const [showVideo, setShowVideo] = useState(false);
   const bienvenidaModal = useRef(null);
 
@@ -34,7 +36,7 @@ function Home() {
   const handleShowVideo = () => {
     setShowVideo(true);
     setPlaneta(planeta + 1);
-	
+	dispatch(limpiar())
   };
 
   // Función para ocultar el video después de que termina
@@ -184,7 +186,6 @@ function Home() {
 				para eso tiene un nuevo boton arriba a la derecha <br/>
 				provemoslo
               </p>
-              <button className="btn ml-56">Siguiente</button>
             </div>
           </div>
         </div>
