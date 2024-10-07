@@ -1,5 +1,13 @@
 # SolesV - Gamified Educational Platform for Astronomy
 
+## Team Members
+
+- **Ronaldo Acevedo Ojeda** - México
+- **Ángel Jesús Zorrilla Cuevas** - México
+- **Amado Juvencio José Santiago** - México
+- **Carlos Alberto Sosa Perera** - México
+- **Kevin Eduardo Hernández Ruiz** - México
+
 ## High-Level Summary
 
 **SolesV** es una plataforma educativa gamificada que busca revolucionar la enseñanza sobre exoplanetas, permitiendo a los usuarios explorar el universo acompañados por un asistente virtual, representado por un animal enviado en una misión espacial. La plataforma ofrece una experiencia interactiva y accesible, donde los usuarios pueden aprender sobre exoplanetas, constelaciones y otros fenómenos astronómicos. La interacción en tiempo real con el asistente es posible gracias a la integración de inteligencia artificial generativa, que permite una experiencia de aprendizaje inmersiva.
